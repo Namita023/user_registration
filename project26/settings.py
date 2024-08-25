@@ -130,8 +130,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='media/'
 
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='namitaneha023@gmail.com'
-EMAIL_HOST_PASSWORD='mfhpzvqjeadzeyll'
+EMAIL_HOST_USER='namitakumariofficial.023@gmail.com'
+EMAIL_HOST_PASSWORD='zodxjtmrbagjccok'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 EMAIL_PORT=587

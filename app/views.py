@@ -2,8 +2,10 @@ from django.shortcuts import render
 from app.forms import *
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from app.models import *
 
 # Create your views here.
 
@@ -24,7 +26,7 @@ def registration(request):
             MPFDO.username=MUFDO
             MPFDO.save()
 
-            send_mail('Registration','Thank you for registration.','namitaneha023@gmail.com',[MUFDO.email],fail_silently=False)
+            send_mail('Registration','Thank you for registration.','namitakumariofficial.023@gmail.com',[MUFDO.email],fail_silently=False)
 
             return HttpResponse('Registration successful... ')
         else:
@@ -50,3 +52,17 @@ def user_login(request):
         else:
             return HttpResponse('Invalid Credentials')
     return render(request,'user_login.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
+
+@login_required
+def display_data(request):
+    un=request.session['username']
+    UO=User.objects.get(username=un)
+    PO=Profile.objects.get(username=UO)
+    d={'UO':UO,'PO':PO}
+    return render(request,'display_data.html',d)
+
